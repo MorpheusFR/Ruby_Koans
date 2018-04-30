@@ -15,6 +15,27 @@
 #
 def triangle(a, b, c)
   # WRITE THIS CODE
+  my_hypotenuse, side_1, side_2 = if c > a || c > b
+                                    [c, a, b]
+                                  elsif b > a || b > c
+                                    [b, a, c]
+                                  else
+                                    [a, b, c]
+                                  end
+
+  if a <= 0 || b <= 0 || c <= 0
+    raise TriangleError
+  elsif my_hypotenuse >= side_1 + side_2
+    raise TriangleError
+  end
+
+  result_triangle = if my_hypotenuse == side_1 && my_hypotenuse == side_2
+                      :equilateral
+                    elsif my_hypotenuse == side_1 || my_hypotenuse == side_2
+                      :isosceles
+                    else
+                      :scalene
+                    end
 end
 
 # Error class used in part 2.  No need to change this code.
